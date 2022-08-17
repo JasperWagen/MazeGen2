@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>MazeGen</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <center>
+            <h1>MazeGen</h1>
+            {% if maze_img_path %}
+                <img src="{{ maze_img_path }}" alt="maze" style="height: 500px"/>
+            {% endif %}
+            <form action="/" method="post">
+                <label for="width">Width (10-200)</label>
+                <input type="range" name="width" min="10" max="200" value="{{ width }}"">
+                <label for="height">Height (10-200)</label>
+                <input type="range" name="height" min="10" max="200" value="{{ height }}"">
+                <br>
+                <label for="path_color">Path Color</label>
+                <input type="color" name="path_color" value="{{ path_color }}"">
+                <label for="wall_color">Wall Color</label>
+                <input type="color" name="wall_color" value="{{ wall_color }}">
+                <br>
+                <input type="submit" value="Generate" />
+            </form>
+        </center>
+    </body>
+</html>

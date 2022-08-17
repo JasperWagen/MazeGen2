@@ -1,11 +1,12 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageColor
 
 
-def plot_image(maze_array, path_color=(255, 255, 255), wall_color=(0,0,0)):
+def plot_image(maze_array, path_color=(255, 255, 255), wall_color=(0, 0, 0)):
     """
     Plot an image based on a maze array.
     """
+
     img_array = np.zeros((maze_array.shape[0], maze_array.shape[1], 3), dtype=np.uint8)
     for i in range(maze_array.shape[0]):
         for j in range(maze_array.shape[1]):

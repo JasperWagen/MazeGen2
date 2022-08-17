@@ -1,0 +1,7 @@
+img {
+    image-rendering: pixelated !important;
+}
+
+input {
+    margin: 10px;
+}

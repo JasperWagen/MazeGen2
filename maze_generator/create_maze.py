@@ -1,15 +1,16 @@
 import sys
-from random import choice, randint
+from random import choice
 
 import numpy as np
+from PIL import ImageColor
 
-from flaskr.maze_generator.directions import Directions
-from flaskr.maze_generator.plot_image import plot_image
+from maze_generator.directions import Directions
+from maze_generator.plot_image import plot_image
 
 sys.setrecursionlimit(8000)
 
 
-def create_maze(height, width):
+def create_maze(height, width, path_color, wall_color):
     """
     Create a maze with the given height and width using the recursive backtracker algorithm.
     """
@@ -23,7 +24,10 @@ def create_maze(height, width):
     maze_array = _generate(start, 2, maze_array)
 
     maze_array = _set_exit(maze_array)
-    plot_image(maze_array)
+
+    rgb_path_color = ImageColor.getcolor(path_color, "RGB")
+    rgb_wall_color = ImageColor.getcolor(wall_color, "RGB")
+    plot_image(maze_array, rgb_path_color, rgb_wall_color)
 
 
 def _set_exit(maze_array):
@@ -36,6 +40,7 @@ def _set_exit(maze_array):
     maze_array[exit_choice, -2] = 0.5
 
     return maze_array
+
 
 def _create_maze_grid(height, width):
     """
@@ -64,8 +69,6 @@ def _create_maze_grid(height, width):
     ) = (0.5, 0.5, 0.5, 0.5)
 
     return maze_array
-
-
 
 
 def _generate(current_y, current_x, maze_array):
