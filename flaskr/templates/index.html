@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>MazeGen</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <center>
+            <h1>MazeGen</h1>
+            {% if maze_img_path %}
+                <img src="{{ maze_img_path }}" alt="maze" style="height: 500px"/>
+            {% endif %}
+            <form action="/" method="post">
+                <input type="text" name="width" placeholder="Width" />
+                <input type="text" name="height" placeholder="Height" />
+                <input type="submit" value="Generate" />
+            </form>
+        </center>
+    </body>
+</html>
