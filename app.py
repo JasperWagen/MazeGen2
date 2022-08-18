@@ -39,5 +39,5 @@ def index():
 
     create_maze(height, width, path_color, wall_color, with_solution)
     return render_template(
-        "index.html", maze_img_path="static/hello.png", height=height, width=width, path_color=path_color, wall_color=wall_color, with_solution=with_solution
+        "index.html", maze_img_path="static/maze.png", height=height, width=width, path_color=path_color, wall_color=wall_color, with_solution=with_solution
     )
