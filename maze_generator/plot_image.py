@@ -20,6 +20,6 @@ def plot_image(maze_array, path_color=(255, 255, 255), wall_color=(0, 0, 0), sol
             img_array[i[0], i[1]] = (255, 0, 0)
 
     img = Image.fromarray(img_array, "RGB")
-    img.save("static/hello.png")
+    img.save("static/maze.png")
 
 

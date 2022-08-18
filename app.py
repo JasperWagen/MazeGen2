@@ -25,7 +25,7 @@ def index():
 
         return render_template(
             "index.html",
-            maze_img_path="static/hello.png",
+            maze_img_path="static/maze.png",
             height=height,
             width=width,
             path_color=path_color,

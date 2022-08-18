@@ -5,29 +5,32 @@ def solve_maze(maze_array):
     Solves the maze using depth first search.
     """
 
-    finish = [(i, maze_array.shape[1]-1) for i, v in enumerate(maze_array[1:-1, -2], 1) if v == 0.5]
+    finish = [(i, maze_array.shape[1]-2) for i, v in enumerate(maze_array[1:-1, -2], 1) if v == 0.5]
     print(finish)
     start = [(i, 1) for i, v in enumerate(maze_array[1:-1, 1], 1) if v == 0.5]
     path = start
-    visited = set(path + finish)
-    node = path[0]
-
-    path = dfs(visited, path, maze_array, node)
+    visited = set(path)
+    path = dfs(visited, path, maze_array, finish[0])
     path.append(finish[0])
     return path
 
-def dfs(visited, path, maze_array, node):
+def dfs(visited, path, maze_array, finish):
     while True:
+        node = path[-1]
+        if node == finish:
+            return path
+
         available_directions = [d.value for d in Directions if _node_not_visited(node, visited, d, maze_array)]
         if len(available_directions) == 0:
             path.pop()
             break
 
-        node = (node[0] + available_directions[0][0], node[1] + available_directions[0][1])
-        path.append(node)
-        visited.add(node)
-        # print(f"{node=}\n{visited=}\n{available_directions=}, {available_directions[0]=} \n\n")
-        return dfs(visited, path, maze_array, node)
+        next_node = (node[0] + available_directions[0][0], node[1] + available_directions[0][1])
+        path.append(next_node)
+        visited.add(next_node)
+
+        path = dfs(visited, path, maze_array, finish)
+
     return path
 
 def _node_not_visited(node, visited, d, maze_array):

@@ -94,7 +94,7 @@ def _generate(current_y, current_x, maze_array):
             current_y, current_x, maze_array
         )
 
-        if len(available_directions) <= 0:
+        if len(available_directions) == 0:
             break
 
         move = choice(available_directions)
@@ -123,7 +123,5 @@ def _get_available_directions(current_y, current_x, maze_array):
 
 
 if __name__ == "__main__":
-    maze_array = _create_maze_array(7, 7)
-    plot_image(maze_array, path_color=(123, 90, 0), wall_color=(85, 17, 90))
-    print(solve_maze(maze_array))
+    maze_array = create_maze(7, 7, "#000", "#fff", with_solution=True)
 
