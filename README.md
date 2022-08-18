@@ -1,4 +1,4 @@
-#MazeGen2
+# MazeGen2
 
 ## Make and solve mazes till your heart's content
 
