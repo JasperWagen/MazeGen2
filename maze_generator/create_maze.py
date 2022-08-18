@@ -6,15 +6,28 @@ from PIL import ImageColor
 
 from maze_generator.directions import Directions
 from maze_generator.plot_image import plot_image
+from maze_generator.solve_maze import solve_maze
 
 sys.setrecursionlimit(8000)
 
 
-def create_maze(height, width, path_color, wall_color):
+def create_maze(height, width, path_color, wall_color, with_solution=False):
     """
     Create a maze with the given height and width using the recursive backtracker algorithm.
     """
 
+    maze_array = _create_maze_array(height, width)
+
+    rgb_path_color = ImageColor.getcolor(path_color, "RGB")
+    rgb_wall_color = ImageColor.getcolor(wall_color, "RGB")
+
+    if with_solution:
+        solution = solve_maze(maze_array)
+        plot_image(maze_array, rgb_path_color, rgb_wall_color, solution)
+    else:
+        plot_image(maze_array, rgb_path_color, rgb_wall_color)
+
+def _create_maze_array(height, width):
     maze_array = _create_maze_grid(height, width)
 
     start_options = [y for y in range(maze_array.shape[0]) if y % 2 == 0][1:-1]
@@ -25,9 +38,7 @@ def create_maze(height, width, path_color, wall_color):
 
     maze_array = _set_exit(maze_array)
 
-    rgb_path_color = ImageColor.getcolor(path_color, "RGB")
-    rgb_wall_color = ImageColor.getcolor(wall_color, "RGB")
-    plot_image(maze_array, rgb_path_color, rgb_wall_color)
+    return maze_array
 
 
 def _set_exit(maze_array):
@@ -112,5 +123,7 @@ def _get_available_directions(current_y, current_x, maze_array):
 
 
 if __name__ == "__main__":
-    maze_array = create_maze(200, 100)
+    maze_array = _create_maze_array(7, 7)
     plot_image(maze_array, path_color=(123, 90, 0), wall_color=(85, 17, 90))
+    print(solve_maze(maze_array))
+
