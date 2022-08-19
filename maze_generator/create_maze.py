@@ -27,6 +27,7 @@ def create_maze(height, width, path_color, wall_color, with_solution=False):
     else:
         plot_image(maze_array, rgb_path_color, rgb_wall_color)
 
+
 def _create_maze_array(height, width):
     maze_array = _create_maze_grid(height, width)
 
@@ -124,4 +125,3 @@ def _get_available_directions(current_y, current_x, maze_array):
 
 if __name__ == "__main__":
     maze_array = create_maze(7, 7, "#000", "#fff", with_solution=True)
-

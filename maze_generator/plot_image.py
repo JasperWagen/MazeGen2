@@ -2,7 +2,9 @@ import numpy as np
 from PIL import Image, ImageColor
 
 
-def plot_image(maze_array, path_color=(255, 255, 255), wall_color=(0, 0, 0), solution=None):
+def plot_image(
+    maze_array, path_color=(255, 255, 255), wall_color=(0, 0, 0), solution=None
+):
     """
     Plot an image based on a maze array.
     """
@@ -21,5 +23,3 @@ def plot_image(maze_array, path_color=(255, 255, 255), wall_color=(0, 0, 0), sol
 
     img = Image.fromarray(img_array, "RGB")
     img.save("static/maze.png")
-
-

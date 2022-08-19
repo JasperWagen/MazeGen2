@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-service nginx start
-uwsgi --ini uwsgi.ini
+poetry run waitress-serve --host 0.0.0.0 --port 5069 app:app
