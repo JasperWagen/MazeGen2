@@ -16,13 +16,13 @@ def solve_maze(maze_array):
     path = start
     visited = set(path)
 
-    path = dfs(visited, path, maze_array, finish[0])
+    path = _dfs(visited, path, maze_array, finish[0])
     path.append(finish[0])
 
     return path
 
 
-def dfs(visited, path, maze_array, finish):
+def _dfs(visited, path, maze_array, finish):
     while True:
         node = path[-1]
         if node == finish:
@@ -36,7 +36,7 @@ def dfs(visited, path, maze_array, finish):
 
         if len(available_directions) == 0:
             path.pop()
-            break
+            continue
 
         next_node = (
             node[0] + available_directions[0][0],
@@ -44,10 +44,6 @@ def dfs(visited, path, maze_array, finish):
         )
         path.append(next_node)
         visited.add(next_node)
-
-        path = dfs(visited, path, maze_array, finish)
-
-    return path
 
 
 def _node_not_visited(node, visited, d, maze_array):

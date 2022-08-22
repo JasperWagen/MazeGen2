@@ -124,4 +124,4 @@ def _get_available_directions(current_y, current_x, maze_array):
 
 
 if __name__ == "__main__":
-    maze_array = create_maze(7, 7, "#000", "#fff", with_solution=True)
+    maze_array = create_maze(100, 100, "#000", "#fff", with_solution=True)
